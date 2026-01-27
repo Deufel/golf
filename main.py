@@ -15,7 +15,7 @@ from stario.html import (
 # State
 # =============================================================================
 
-tracked_users: set[str] = {"deufel", "tjwilson42", "ben409", "nprichodko", "Boshaga", "texanpsycho", "Cory12", "pancsakb", "Bogey2more", "SackTweeterson"}
+tracked_users: set[str] = {"deufel"}
 relay: Relay[str] = Relay()
 
 # =============================================================================
