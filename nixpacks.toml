@@ -1,0 +1,9 @@
+[variables]
+NIXPACKS_UV_VERSION = "0.9.27"
+
+[phases.setup]
+cmds = ["pip install uv==0.9.27"]
+
+[start]
+cmd = "uv run main.py"
+
