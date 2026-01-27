@@ -1,9 +1,8 @@
-[variables]
-NIXPACKS_UV_VERSION = "0.9.27"
-
 [phases.setup]
 cmds = ["curl -LsSf https://astral.sh/uv/0.9.27/install.sh | sh"]
 
-[start]
-cmd = "~/.local/bin/uv run main.py"
+[phases.install]
+cmds = ["/root/.local/bin/uv sync --no-dev"]
 
+[start]
+cmd = "/root/.local/bin/uv run main.py"
