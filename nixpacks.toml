@@ -2,8 +2,8 @@
 NIXPACKS_UV_VERSION = "0.9.27"
 
 [phases.setup]
-cmds = ["pip install uv==0.9.27"]
+cmds = ["curl -LsSf https://astral.sh/uv/0.9.27/install.sh | sh"]
 
 [start]
-cmd = "uv run main.py"
+cmd = "~/.local/bin/uv run main.py"
 
