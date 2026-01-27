@@ -1,0 +1,120 @@
+@layer theme {
+  :root {
+    color-scheme: light dark;
+
+    font-family: var(--font-humanist);
+    letter-spacing: -0.01em;
+
+    /* === SHADOW === */
+    --shadow-out-md: var(--shadow-2);
+    --shadow-in-md: var(--inner-shadow-2);
+    --shadow-card:
+      0 1px 2px 0 rgb(0 0 0 / 0.03),
+      0 1px 6px -1px rgb(0 0 0 / 0.02),
+      0 2px 4px 0 rgb(0 0 0 / 0.02);
+    --shadow-card-hover:
+      0 2px 4px 0 rgb(0 0 0 / 0.04),
+      0 4px 12px -2px rgb(0 0 0 / 0.03),
+      0 6px 8px 0 rgb(0 0 0 / 0.02);
+
+    /* === SPACING === */
+    --space-xs: var(--size-1);
+    --space-sm: var(--size-2);
+    --space-md: var(--size-3);
+    --space-lg: var(--size-4);
+    --space-xl: var(--size-5);
+
+    /* === LAYOUT === */
+    --grid-gap: var(--space-sm);
+
+    /* === RADIUS === */
+    --radius-sm: var(--radius-2);
+    --radius-md: var(--radius-3);
+    --radius-lg: var(--radius-4);
+    --radius-btn: var(--radius-2);
+    --radius-card: var(--radius-3);
+
+    /* === BORDERS === */
+    --border-subtle: light-dark(var(--gry-2), var(--gry-7));
+    --border-muted: light-dark(var(--gry-3), var(--gry-6));
+
+    /* === SURFACES === */
+    --surface-page: light-dark(var(--gry-1), var(--gry-9));
+    --surface-card: light-dark(white, var(--gry-8));
+    --surface-raised: light-dark(var(--gry-0), var(--gry-7));
+    --surface-inset: light-dark(var(--gry-2), var(--gry-8));
+    --surface-input: light-dark(
+      color-mix(in oklch, var(--ind-0), var(--gry-0) 85%),
+      color-mix(in oklch, var(--ind-9), var(--gry-8) 85%)
+    );
+
+    /* === COLORS (muted with gray for premium feel) === */
+    --color-pri: light-dark(
+      color-mix(in oklch, var(--ind-7), var(--gry-7) 15%),
+      color-mix(in oklch, var(--ind-7), var(--gry-5) 10%)
+    );
+    --color-pri-text: white;
+
+    --color-sec: light-dark(
+      color-mix(in oklch, var(--tel-6), var(--gry-6) 15%),
+      color-mix(in oklch, var(--tel-5), var(--gry-5) 10%)
+    );
+    --color-sec-text: white;
+
+    --color-wrn: light-dark(
+      color-mix(in oklch, var(--yel-5), var(--gry-5) 20%),
+      color-mix(in oklch, var(--yel-6), var(--gry-6) 15%)
+    );
+    --color-wrn-text: var(--gry-9);
+
+    --color-dgr: light-dark(
+      color-mix(in oklch, var(--red-6), var(--gry-7) 15%),
+      color-mix(in oklch, var(--red-5), var(--gry-5) 10%)
+    );
+    --color-dgr-text: white;
+
+    --color-inf: light-dark(
+      color-mix(in oklch, var(--blu-6), var(--gry-6) 15%),
+      color-mix(in oklch, var(--blu-5), var(--gry-4) 10%)
+    );
+    --color-inf-text: white;
+
+    /* === FEEDBACK COLORS === */
+    --color-suc: light-dark(
+      color-mix(in oklch, var(--grn-7), var(--gry-7) 15%),
+      color-mix(in oklch, var(--grn-5), var(--gry-4) 10%)
+    );
+    --color-err: var(--color-dgr);
+
+    /* === TEXT === */
+    --text-color: light-dark(var(--gry-9), var(--gry-1));
+    --text-muted: light-dark(var(--gry-7), var(--gry-3));
+    --text-xs: 0.75rem;
+    --text-sm: 0.8125rem;
+    --text-md: 0.9375rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.375rem;
+
+    /* === BUTTON === */
+    --btn-height-sm: 1.875rem;
+    --btn-height-md: 2.375rem;
+    --btn-height-lg: 2.875rem;
+
+    /* === ICON BUTTON === */
+    --icon-btn-size-sm: var(--size-px-7);
+    --icon-btn-size-md: var(--size-px-8);
+    --icon-btn-size-lg: var(--size-px-9);
+    --icon-size-sm: var(--size-px-4);
+    --icon-size-md: var(--size-px-5);
+    --icon-size-lg: var(--size-px-6);
+
+    /* === GLASS === */
+    --glass-bg: var(--glass-bg-1);
+    --glass-border: var(--glass-border-1);
+    --blur-sm: var(--size-px-2);
+    --blur-md: var(--size-px-3);
+  }
+
+  [data-mode="light"] { color-scheme: light; }
+  [data-mode="dark"] { color-scheme: dark; }
+}

@@ -1,0 +1,91 @@
+@layer props{
+:where(html) {
+    --highlight-size: 10px;
+    --highlight-color: hsl(0 0%, 0% / 20%);
+    --highlight: 0 0 0 var(--highlight-size) var(--highlight-color);
+
+    @media (--os-dark),
+    @media (prefers-color-scheme: dark) {
+        :where(html) {
+            --inner-shadow-highlight: inset 0 -.5px 0 0 #fff1, inset 0 .5px 0 0 #0007;
+            --highlight-color: hsl(0 0%, 100% / 20%);
+            --shadow-color: 220 40% 2%;
+            --shadow-strength: 25%;
+        }
+    }
+
+    --grid-cell: [stack] 1fr / [stack] 1fr;
+    --grid-cell-name: stack;
+    --grid-ram: repeat(auto-fit, minmax(min(0, 100%), 1fr));
+    --grid-holy-grail: auto 1fr auto / auto 1fr auto;
+    --shadow-color: 220 3% 15%;
+    --shadow-strength: 1%;
+    --inner-shadow-highlight: inset 0 -.5px 0 0 #fff, inset 0 .5px 0 0 #0001;
+    --shadow-1: 0 1px 2px -1px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%));
+    --shadow-2: 0 3px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 7px 14px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%));
+    --shadow-3: 0 -1px 3px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 1px 2px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 2px 5px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)), 0 4px 12px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)), 0 12px 15px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+    --shadow-4: 0 -2px 5px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 1px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 2px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)), 0 9px 9px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)), 0 16px 16px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%));
+    --shadow-5: 0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 2px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 10px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)), 0 20px 20px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)), 0 40px 40px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+    --shadow-6: 0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)), 0 3px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 7px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)), 0 12px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)), 0 22px 18px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)), 0 41px 33px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%)), 0 100px 80px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+    --inner-shadow-0: inset 0 0 0 1px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%));
+    --inner-shadow-1: inset 0 1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%)), var(--inner-shadow-highlight);
+    --inner-shadow-2: inset 0 1px 4px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%)), var(--inner-shadow-highlight);
+    --inner-shadow-3: inset 0 2px 8px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%)), var(--inner-shadow-highlight);
+    --inner-shadow-4: inset 0 2px 14px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%)), var(--inner-shadow-highlight);
+    --ratio-square: 1;
+    --ratio-landscape: 1.3333333333333333;
+    --ratio-portrait: 0.75;
+    --ratio-widescreen: 1.7777777777777777;
+    --ratio-ultra-wide: 3.6;
+    --ratio-cinema: 2.3333333333333335;
+    --ratio-golden: 1.6180339887;
+    --gry-0: oklch(0.98 0.005 270); --gry-1: oklch(0.95 0.005 270); --gry-2: oklch(0.90 0.008 270); --gry-3: oklch(0.85 0.010 270); --gry-4: oklch(0.75 0.012 270); --gry-5: oklch(0.65 0.015 270); --gry-6: oklch(0.55 0.015 270); --gry-7: oklch(0.45 0.015 270); --gry-8: oklch(0.32 0.015 270); --gry-9: oklch(0.22 0.015 270);
+    --red-0: oklch(0.97 0.035 25); --red-1: oklch(0.93 0.065 25); --red-2: oklch(0.88 0.105 25); --red-3: oklch(0.83 0.145 25); --red-4: oklch(0.78 0.180 25); --red-5: oklch(0.68 0.215 25); --red-6: oklch(0.63 0.235 25); --red-7: oklch(0.58 0.240 27); --red-8: oklch(0.52 0.230 27); --red-9: oklch(0.45 0.210 27);
+    --pnk-0: oklch(0.97 0.038 350); --pnk-1: oklch(0.93 0.070 350); --pnk-2: oklch(0.88 0.110 350); --pnk-3: oklch(0.83 0.148 350); --pnk-4: oklch(0.78 0.180 350); --pnk-5: oklch(0.70 0.210 348); --pnk-6: oklch(0.65 0.225 345); --pnk-7: oklch(0.60 0.230 342); --pnk-8: oklch(0.53 0.220 340); --pnk-9: oklch(0.45 0.195 338);
+    --grp-0: oklch(0.96 0.040 320); --grp-1: oklch(0.92 0.075 320); --grp-2: oklch(0.87 0.120 318); --grp-3: oklch(0.82 0.160 316); --grp-4: oklch(0.76 0.195 314); --grp-5: oklch(0.68 0.220 312); --grp-6: oklch(0.62 0.230 310); --grp-7: oklch(0.56 0.225 308); --grp-8: oklch(0.50 0.210 306); --grp-9: oklch(0.43 0.185 304);
+    --vio-0: oklch(0.96 0.042 295); --vio-1: oklch(0.92 0.078 295); --vio-2: oklch(0.87 0.125 293); --vio-3: oklch(0.81 0.165 291); --vio-4: oklch(0.74 0.200 289); --vio-5: oklch(0.66 0.225 287); --vio-6: oklch(0.60 0.235 285); --vio-7: oklch(0.55 0.230 283); --vio-8: oklch(0.49 0.215 281); --vio-9: oklch(0.43 0.190 279);
+    --ind-0: oklch(0.96 0.040 265); --ind-1: oklch(0.92 0.075 265); --ind-2: oklch(0.86 0.120 263); --ind-3: oklch(0.80 0.160 261); --ind-4: oklch(0.73 0.190 259); --ind-5: oklch(0.65 0.210 257); --ind-6: oklch(0.59 0.220 255); --ind-7: oklch(0.54 0.215 253); --ind-8: oklch(0.48 0.200 251); --ind-9: oklch(0.42 0.180 249);
+    --blu-0: oklch(0.97 0.035 240); --blu-1: oklch(0.93 0.070 240); --blu-2: oklch(0.87 0.115 238); --blu-3: oklch(0.80 0.155 236); --blu-4: oklch(0.72 0.185 234); --blu-5: oklch(0.64 0.205 232); --blu-6: oklch(0.58 0.215 230); --blu-7: oklch(0.53 0.210 228); --blu-8: oklch(0.47 0.195 226); --blu-9: oklch(0.41 0.175 224);
+    --cyn-0: oklch(0.97 0.038 200); --cyn-1: oklch(0.93 0.072 200); --cyn-2: oklch(0.88 0.115 198); --cyn-3: oklch(0.82 0.150 196); --cyn-4: oklch(0.75 0.175 194); --cyn-5: oklch(0.68 0.190 192); --cyn-6: oklch(0.62 0.195 190); --cyn-7: oklch(0.57 0.190 188); --cyn-8: oklch(0.51 0.180 186); --cyn-9: oklch(0.45 0.165 184);
+    --tel-0: oklch(0.97 0.040 170); --tel-1: oklch(0.93 0.075 170); --tel-2: oklch(0.88 0.120 168); --tel-3: oklch(0.82 0.155 166); --tel-4: oklch(0.76 0.180 164); --tel-5: oklch(0.69 0.195 162); --tel-6: oklch(0.63 0.200 160); --tel-7: oklch(0.58 0.195 158); --tel-8: oklch(0.52 0.185 156); --tel-9: oklch(0.46 0.170 154);
+    --grn-0: oklch(0.97 0.042 145); --grn-1: oklch(0.93 0.078 145); --grn-2: oklch(0.88 0.125 143); --grn-3: oklch(0.82 0.160 141); --grn-4: oklch(0.76 0.185 139); --grn-5: oklch(0.69 0.200 137); --grn-6: oklch(0.63 0.205 135); --grn-7: oklch(0.58 0.200 133); --grn-8: oklch(0.52 0.190 131); --grn-9: oklch(0.46 0.175 129);
+    --lim-0: oklch(0.98 0.045 120); --lim-1: oklch(0.95 0.085 120); --lim-2: oklch(0.91 0.135 118); --lim-3: oklch(0.86 0.175 116); --lim-4: oklch(0.81 0.205 114); --lim-5: oklch(0.75 0.220 112); --lim-6: oklch(0.70 0.225 110); --lim-7: oklch(0.65 0.220 108); --lim-8: oklch(0.59 0.210 106); --lim-9: oklch(0.53 0.195 104);
+    --yel-0: oklch(0.98 0.050 95); --yel-1: oklch(0.96 0.095 95); --yel-2: oklch(0.93 0.140 93); --yel-3: oklch(0.89 0.175 91); --yel-4: oklch(0.85 0.200 89); --yel-5: oklch(0.80 0.210 87); --yel-6: oklch(0.75 0.215 85); --yel-7: oklch(0.70 0.210 83); --yel-8: oklch(0.65 0.200 81); --yel-9: oklch(0.59 0.185 79);
+    --org-0: oklch(0.97 0.048 55); --org-1: oklch(0.94 0.090 55); --org-2: oklch(0.89 0.135 53); --org-3: oklch(0.84 0.170 51); --org-4: oklch(0.78 0.195 49); --org-5: oklch(0.72 0.210 47); --org-6: oklch(0.67 0.215 45); --org-7: oklch(0.62 0.210 43); --org-8: oklch(0.56 0.200 41); --org-9: oklch(0.50 0.185 39);
+    --size-000: -.5rem; --size-00: -.25rem; --size-1: .25rem; --size-2: .5rem; --size-3: 1rem; --size-4: 1.25rem; --size-5: 1.5rem; --size-6: 1.75rem; --size-7: 2rem; --size-8: 3rem; --size-9: 4rem;
+    --size-px-1: 4px; --size-px-2: 8px; --size-px-3: 16px; --size-px-4: 20px; --size-px-5: 24px; --size-px-6: 28px; --size-px-7: 32px; --size-px-8: 40px; --size-px-9: 48px; --size-px-10: 64px; --size-px-11: 80px;
+    --glass-bg-1: rgba(255, 255, 255, 0.1); --glass-border-1: rgba(255, 255, 255, 0.2);
+    --content-1: 25ch; --content-2: 45ch; --content-3: 75ch;
+    --border-size-1: 1px; --border-size-2: 2px; --border-size-3: 5px;
+    --radius-1: 2px; --radius-2: 5px; --radius-3: 1rem; --radius-4: 2rem; --radius-5: 4rem;
+    --radius-round: 1e5px;
+    --radius-conditional-3: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-3));
+    --font-system-ui: system-ui, sans-serif;
+    --font-transitional: Charter, Bitstream Charter, Sitka Text, Cambria, serif;
+    --font-old-style: Iowan Old Style, Palatino Linotype, URW Palladio L, P052, serif;
+    --font-humanist: Seravek, Gill Sans Nova, Ubuntu, Calibri, DejaVu Sans, source-sans-pro, sans-serif;
+    --font-geometric-humanist: Avenir, Montserrat, Corbel, URW Gothic, source-sans-pro, sans-serif;
+    --font-classical-humanist: Optima, Candara, Noto Sans, source-sans-pro, sans-serif;
+    --font-neo-grotesque: Inter, Roboto, Helvetica Neue, Arial Nova, Nimbus Sans, Arial, sans-serif;
+    --font-monospace-slab-serif: Nimbus Mono PS, Courier New, monospace;
+    --font-monospace-code: Dank Mono, Operator Mono, Inconsolata, Fira Mono, ui-monospace, SF Mono,Monaco, Droid Sans Mono, Source Code Pro, Cascadia Code,Menlo, Consolas, DejaVu Sans Mono, monospace;
+    --font-industrial: Bahnschrift, DIN Alternate, Franklin Gothic Medium, Nimbus Sans Narrow, sans-serif-condensed, sans-serif;
+    --font-rounded-sans: ui-rounded, Hiragino Maru Gothic ProN, Quicksand, Comfortaa, Manjari, Arial Rounded MT, Arial Rounded MT Bold, Calibri, source-sans-pro, sans-serif;
+    --font-slab-serif: Rockwell, Rockwell Nova, Roboto Slab, DejaVu Serif, Sitka Small, serif;
+    --font-antique: Superclarendon, Bookman Old Style, URW Bookman, URW Bookman L, Georgia Pro, Georgia, serif;
+    --font-didone: Didot, Bodoni MT, Noto Serif Display, URW Palladio L, P052, Sylfaen, serif;
+    --font-handwritten: Segoe Print, Bradley Hand, Chilanka, TSCu_Comic, casual, cursive;
+    --layer-1: 1; --layer-2: 2; --layer-3: 3; --layer-4: 4; --layer-5: 5; 
+    --layer-important: 2147483647;
+
+    /* Breakpoints */
+    --bp-mobile: 768px;
+
+    /* Drawer */
+    --drawer-width: clamp(280px, 75vw, 360px);
+    --drawer-maxwidth: 85vw;
+    --drawer-height: clamp(200px, 40vh, 350px);
+    --drawer-maxheight: 60vh;
+    --drawer-backdrop: rgba(0, 0, 0, 0.5);
+  }
+}

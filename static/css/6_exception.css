@@ -1,0 +1,363 @@
+@layer exception {
+  /* === DRAWER DIRECTIONS === */
+  
+  /* Left drawer */
+  [class*="drawer:left"] {
+    top: 0;
+    left: 0;
+    width: var(--drawer-width);
+    max-width: var(--drawer-maxwidth);
+    height: 100vh;
+    transform: translateX(-100%);
+  }
+  
+  [class*="drawer:left"][open],
+  [class*="drawer:left"]:popover-open {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  @starting-style {
+    [class*="drawer:left"][open],
+    [class*="drawer:left"]:popover-open {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Right drawer */
+  [class*="drawer:right"] {
+    top: 0;
+    right: 0;
+    width: var(--drawer-width);
+    max-width: var(--drawer-maxwidth);
+    height: 100vh;
+    transform: translateX(100%);
+  }
+  
+  [class*="drawer:right"][open],
+  [class*="drawer:right"]:popover-open {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  @starting-style {
+    [class*="drawer:right"][open],
+    [class*="drawer:right"]:popover-open {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  /* Top drawer */
+  [class*="drawer:top"] {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--drawer-height);
+    max-height: var(--drawer-maxheight);
+    transform: translateY(-100%);
+  }
+  
+  [class*="drawer:top"][open],
+  [class*="drawer:top"]:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @starting-style {
+    [class*="drawer:top"][open],
+    [class*="drawer:top"]:popover-open {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+
+  /* Bottom drawer */
+  [class*="drawer:bottom"] {
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--drawer-height);
+    max-height: var(--drawer-maxheight);
+    transform: translateY(100%);
+  }
+  
+  [class*="drawer:bottom"][open],
+  [class*="drawer:bottom"]:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @starting-style {
+    [class*="drawer:bottom"][open],
+    [class*="drawer:bottom"]:popover-open {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+
+  /* === DRAWER BACKDROP (dialog only) === */
+  dialog[class*="drawer:"]::backdrop {
+    background: var(--drawer-backdrop);
+    transition: 
+      opacity 0.3s, 
+      overlay 0.3s allow-discrete, 
+      display 0.3s allow-discrete;
+    opacity: 0;
+  }
+  
+  dialog[class*="drawer:"][open]::backdrop {
+    opacity: 1;
+  }
+  
+  @starting-style {
+    dialog[class*="drawer:"][open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  :where(html) {
+  /* === BUTTON VARIANTS === */
+:is(button, .btn, .icon-btn) {
+    &.pri {
+      --_btn-color: var(--color-pri);
+      background: var(--_btn-color);
+      color: var(--color-pri-text);
+    }
+    &.sec {
+      --_btn-color: var(--color-sec);
+      background: var(--_btn-color);
+      color: var(--color-sec-text);
+    }
+    &.gho {
+      background: transparent;
+      color: inherit;
+    }
+    &.wrn {
+      --_btn-color: var(--color-wrn);
+      background: var(--_btn-color);
+      color: var(--color-wrn-text);
+    }
+    &.dgr {
+      --_btn-color: var(--color-dgr);
+      background: var(--_btn-color);
+      color: var(--color-dgr-text);
+    }
+    /* .out suffix - works with any variant e.g. class="pri out", class="sec out" */
+    &.out {
+      background: transparent;
+      color: var(--_btn-color);
+      border: 1.5px solid currentColor;
+    }
+  }
+  }
+
+  /* === BUTTON SIZES === */
+  :is(button, .btn) {
+    &.sm { height: var(--btn-height-sm); padding-inline: var(--space-sm); font-size: var(--text-sm); }
+    &.lg { height: var(--btn-height-lg); padding-inline: var(--space-lg); font-size: var(--text-lg); }
+  }
+
+  /* === ICON BUTTON SIZES === */
+  .icon-btn {
+    &.sm { --_icon-btn-size: var(--icon-btn-size-sm); --_icon-size: var(--icon-size-sm); }
+    &.lg { --_icon-btn-size: var(--icon-btn-size-lg); --_icon-size: var(--icon-size-lg); }
+  }
+
+  /* === ICON BUTTON VARIANTS (specific overrides) === */
+  .icon-btn {
+    &.pri {
+      background: var(--_icon-btn-color);
+      color: var(--color-pri-text);
+      border-color: var(--_icon-btn-color);
+    }
+    &.sec {
+      background: color-mix(in oklch, var(--_icon-btn-color), transparent 90%);
+      color: var(--_icon-btn-color);
+      border-color: transparent;
+    }
+    &.out {
+      border-color: var(--gry-5);
+      background: transparent;
+    }
+  }
+
+  /* === SHARED STYLE VARIANTS (gra, gla) === */
+  :is(button, .btn, .icon-btn) {
+    &.gra {
+      background: linear-gradient(135deg, var(--color-pri), var(--color-suc));
+      color: white;
+      border-color: transparent;
+    }
+    &.gla {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--blur-md));
+      border-color: var(--glass-border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  /* === ICON BUTTON COLORS === */
+  .icon-btn {
+    &.suc { --_icon-btn-color: var(--color-suc); }
+    &.wrn { --_icon-btn-color: var(--color-wrn); }
+    &.dgr { --_icon-btn-color: var(--color-dgr); }
+  }
+
+  /* === ICON BUTTON SHAPE === */
+  .icon-btn {
+    &.round { border-radius: var(--radius-full); }
+  }
+
+  /* === BUTTON STATES === */
+  :is(button, .btn, .icon-btn) {
+    &[aria-busy="true"] { opacity: 0.7; cursor: wait; }
+    &:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+  }
+
+  /* === TAG VARIANTS === */
+  .badge {
+    &.suc { background: var(--color-suc); color: var(--color-suc-text, white); }
+    &.wrn { background: var(--color-wrn); color: var(--color-wrn-text, white); }
+    &.dgr { background: var(--color-dgr); color: var(--color-dgr-text, white); }
+  }
+
+  .tag {
+    &.inf {
+      background: light-dark(
+        color-mix(in oklch, var(--blu-5), var(--gry-0) 85%),
+        color-mix(in oklch, var(--blu-7), var(--gry-8) 80%)
+      );
+      color: light-dark(
+        color-mix(in oklch, var(--blu-7), var(--gry-9) 30%),
+        color-mix(in oklch, var(--blu-3), var(--gry-1) 20%)
+      );
+      border-color: light-dark(
+        color-mix(in oklch, var(--blu-5), transparent 60%),
+        color-mix(in oklch, var(--blu-6), transparent 50%)
+      );
+    }
+    &.suc {
+      background: light-dark(
+        color-mix(in oklch, var(--grn-5), var(--gry-0) 85%),
+        color-mix(in oklch, var(--grn-7), var(--gry-8) 80%)
+      );
+      color: light-dark(
+        color-mix(in oklch, var(--grn-8), var(--gry-9) 30%),
+        color-mix(in oklch, var(--grn-3), var(--gry-1) 20%)
+      );
+      border-color: light-dark(
+        color-mix(in oklch, var(--grn-5), transparent 60%),
+        color-mix(in oklch, var(--grn-6), transparent 50%)
+      );
+    }
+    &.wrn {
+      background: light-dark(
+        color-mix(in oklch, var(--yel-7), var(--gry-0) 70%),
+        color-mix(in oklch, var(--yel-7), var(--gry-8) 65%)
+      );
+      color: light-dark(
+        color-mix(in oklch, var(--yel-9), var(--gry-9) 40%),
+        color-mix(in oklch, var(--yel-2), var(--gry-1) 30%)
+      );
+      border-color: light-dark(
+        color-mix(in oklch, var(--yel-5), transparent 50%),
+        color-mix(in oklch, var(--yel-6), transparent 40%)
+      );
+    }
+    &.dgr {
+      background: light-dark(
+        color-mix(in oklch, var(--red-7), var(--gry-0) 70%),
+        color-mix(in oklch, var(--red-7), var(--gry-8) 65%)
+      );
+      color: light-dark(
+        color-mix(in oklch, var(--red-7), var(--gry-9) 30%),
+        color-mix(in oklch, var(--red-3), var(--gry-1) 20%)
+      );
+      border-color: light-dark(
+        color-mix(in oklch, var(--red-5), transparent 60%),
+        color-mix(in oklch, var(--red-6), transparent 50%)
+      );
+    }
+  }
+
+  /* === CARD VARIANTS === */
+  .card {
+    &.pri {
+      background: var(--color-pri);
+      color: var(--color-pri-text);
+      border-color: transparent;
+    }
+    &.sec {
+      background: var(--color-sec);
+      color: var(--color-sec-text);
+      border-color: transparent;
+    }
+    &.wrn {
+      background: var(--color-wrn);
+      color: var(--color-wrn-text);
+      border-color: transparent;
+    }
+    &.dgr {
+      background: var(--color-dgr);
+      color: var(--color-dgr-text);
+      border-color: transparent;
+    }
+    &.out {
+      background: transparent;
+      box-shadow: none;
+      border-color: var(--border-muted);
+    }
+    &.gho {
+      background: transparent;
+      box-shadow: none;
+      border-color: transparent;
+    }
+    &.glass {
+      background: light-dark(
+        color-mix(in oklch, white, transparent 20%),
+        color-mix(in oklch, var(--gry-8), transparent 40%)
+      );
+      backdrop-filter: blur(12px);
+      border-color: light-dark(
+        color-mix(in oklch, white, transparent 50%),
+        color-mix(in oklch, var(--gry-6), transparent 70%)
+      );
+      box-shadow:
+        0 1px 2px 0 rgb(0 0 0 / 0.05),
+        inset 0 1px 0 0 light-dark(rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.05));
+    }
+    &.res {
+      resize: horizontal;
+      overflow: auto;
+      border: 1px dashed var(--gry-6);
+      min-width: 250px;
+      max-width: 100%;
+    }
+  }
+
+  /* === INPUT VALIDATION STATES === */
+  input:is([type="text"], [type="email"], [type="password"], [type="search"], [type="tel"], [type="url"], [type="number"]),
+  input:not([type]),
+  textarea {
+    &.err {
+      border-color: var(--color-err);
+      &:focus { box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-err), transparent 85%); }
+    }
+    &.suc {
+      border-color: var(--color-suc);
+      &:focus { box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-suc), transparent 85%); }
+    }
+    &.wrn {
+      border-color: var(--color-wrn);
+      &:focus { box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-wrn), transparent 85%); }
+    }
+    &.inf {
+      border-color: var(--color-inf);
+      &:focus { box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-inf), transparent 85%); }
+    }
+  }
+
+}
+}

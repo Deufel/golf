@@ -1,0 +1,85 @@
+@layer theme {
+  :root {
+    color-scheme: light dark;
+
+    font-family: var(--font-monospace-code);
+    letter-spacing: 0.02em;
+
+    /* === SHADOW === */
+    --shadow-out-md: var(--shadow-2);
+    --shadow-in-md: var(--inner-shadow-2);
+    --shadow-card: light-dark(
+      0 1px 3px 0 rgb(0 0 0 / 0.08),
+      0 0 20px -8px rgb(0 255 200 / 0.15)
+    );
+    --shadow-card-hover: light-dark(
+      0 2px 8px 0 rgb(0 0 0 / 0.12),
+      0 0 30px -5px rgb(255 230 0 / 0.2)
+    );
+
+    /* === SPACING === */
+    --space-xs: var(--size-1);
+    --space-sm: var(--size-2);
+    --space-md: var(--size-3);
+    --space-lg: var(--size-4);
+    --space-xl: var(--size-5);
+
+    /* === LAYOUT === */
+    --grid-gap: var(--space-sm);
+
+    /* === RADIUS (sharp edges) === */
+    --radius-sm: 0;
+    --radius-md: var(--radius-1);
+    --radius-lg: var(--radius-2);
+    --radius-btn: var(--radius-1);
+    --radius-card: var(--radius-2);
+
+    /* === BORDERS === */
+    --border-subtle: light-dark(var(--gry-3), var(--gry-7));
+    --border-muted: light-dark(var(--gry-4), var(--gry-6));
+
+    /* === SURFACES === */
+    --surface-page: light-dark(var(--gry-1), #1a1d1a);
+    --surface-card: light-dark(white, #252a25);
+    --surface-raised: light-dark(var(--gry-0), #2f352f);
+    --surface-inset: light-dark(var(--gry-2), #151815);
+    --surface-input: light-dark(white, #1e221e);
+
+    /* === COLORS (Cyberpunk: neon yellow primary, teal secondary) === */
+    --color-pri: light-dark(var(--ind-6), var(--yel-4));
+    --color-pri-text: light-dark(white, var(--gry-9));
+
+    --color-sec: light-dark(var(--gry-6), var(--gry-6));
+    --color-sec-text: light-dark(white, var(--gry-1));
+
+    --color-wrn: light-dark(var(--yel-5), var(--yel-5));
+    --color-wrn-text: var(--gry-9);
+
+    --color-dgr: light-dark(var(--red-6), var(--red-5));
+    --color-dgr-text: white;
+
+    --color-inf: light-dark(var(--blu-6), var(--cya-5));
+    --color-inf-text: light-dark(white, var(--gry-9));
+
+    /* === FEEDBACK COLORS === */
+    --color-suc: light-dark(var(--grn-6), var(--grn-5));
+    --color-err: var(--color-dgr);
+
+    /* === TEXT === */
+    --text-color: light-dark(var(--gry-9), var(--gry-2));
+    --text-muted: light-dark(var(--gry-6), var(--gry-5));
+    --text-xs: 0.75rem;
+    --text-sm: 0.8125rem;
+    --text-md: 0.9375rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.375rem;
+
+    /* === BUTTON === */
+    --btn-height-sm: 1.875rem;
+    --btn-height-md: 2.375rem;
+    --btn-height-lg: 2.875rem;
+  }
+
+  [data-mode="light"] { color-scheme: light; }
+  [data-mode="dark"] { color-scheme: dark; }
+}
