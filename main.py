@@ -286,11 +286,11 @@ async def main():
     if "--local" in sys.argv or sys.stdout.isatty():
         tracer = RichTracer()
         host = "127.0.0.1"
-        port = 8000
+        port = 7777
     else:
         tracer = JsonTracer()
         host = "0.0.0.0"
-        port = 8000
+        port = 7777
     
     with tracer:
         app = Stario(tracer)
