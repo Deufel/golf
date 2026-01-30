@@ -8,7 +8,7 @@ from dataclasses import dataclass
 import httpx
 from stario import Context, JsonTracer, Relay, RichTracer, Stario, Writer, at, data
 from stario.html import (
-    Body, Button, Div, H1, Head, Html, Input, Meta, Script, Link, Span, Table, Td, Th, Title, Tr, Thead, Tbody
+    Body, Button, Div, H1, Head, Html, Input, Meta, Script, Link, Span, Table, Td, Th, Title, Tr, Thead, Tbody, SafeString
 )
 
 # =============================================================================
@@ -215,6 +215,16 @@ def tracker_view():
                 ),
                 leaderboard_table(),
             )
+        ),
+        Button(
+            {
+                "class": "btn btn-circle btn-primary fixed bottom-4 right-4 shadow-lg",
+                "data-attr:style": "`transform: rotate(${$rotations * 360}deg); transition: transform 0.3s ease;`"
+            },
+            data.signals({"rotations": 0}, ifmissing=True),
+            data.on("click", "$rotations++"),
+            data.on("click", at.post("/refresh")),
+            SafeString("""<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>"""),
         )
     )
 
@@ -272,6 +282,11 @@ async def remove_user(c: Context, w: Writer) -> None:
     # Notify others
     relay.publish("remove", username)
 
+async def refresh(c: Context, w: Writer) -> None:
+    """User initiated refresh."""
+    relay.publish("refresh", "manual")
+    w.empty(204)
+
 async def fetch_user(c: Context, w: Writer) -> None:
     """Fetch and resolve username, then trigger refresh."""
     username = c.req.query.get("user", "")
@@ -315,6 +330,7 @@ async def main():
         app.get("/fetch-user", fetch_user)
         app.post("/add", add_user)
         app.post("/remove", remove_user)
+        app.post("/refresh", refresh)
         await app.serve(host=host, port=port)
 
 if __name__ == "__main__":
