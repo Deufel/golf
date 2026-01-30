@@ -184,10 +184,10 @@ def tracker_view():
                     H1({"class": "card-title text-xl"}, "Golf Tracker"),
                     Div(
                         {"class": "flex gap-2"},
-                        data.signals({"compact": False, "edit": False}, ifmissing=True),
+                        data.signals({"compact": True, "edit": False}, ifmissing=True),  # Changed to True
                         Div(
                             {"class": "flex items-center gap-1"},
-                            Input({"type": "checkbox", "class": "toggle toggle-sm toggel-primary"}, data.bind("compact")),
+                            Input({"type": "checkbox", "class": "toggle toggle-sm toggle-primary"}, data.bind("compact")),  # Fixed typo: toggel -> toggle
                             Span({"class": "label-text"}, "Compact"),
                         ),
                         Div(
@@ -202,11 +202,15 @@ def tracker_view():
                     {"class": "flex gap-1 mb-3"},
                     data.show("$edit"),
                     data.signals({"newUser": ""}, ifmissing=True),
-                    Input({
-                        "type": "text",
-                        "placeholder": "Enter username to track...",
-                        "class": "input input-bordered input-primary flex-1"
-                    }, data.bind("newUser")),
+                    Input(
+                        {
+                            "type": "text",
+                            "placeholder": "Enter username to track...",
+                            "class": "input input-bordered input-primary flex-1"
+                        },
+                        data.bind("newUser"),
+                        data.on("keyup", "if (event.key === 'Enter') @post('/add')")
+                    ),
                     Button({"class": "btn btn-primary"}, data.on("click", at.post("/add")), "Add Player"),
                 ),
                 leaderboard_table(),
@@ -269,12 +273,24 @@ async def remove_user(c: Context, w: Writer) -> None:
     relay.publish("remove", username)
 
 async def fetch_user(c: Context, w: Writer) -> None:
-    """Fetch triggers a full refresh."""
+    """Fetch and resolve username, then trigger refresh."""
     username = c.req.query.get("user", "")
     if username.lower() not in tracked_users:
         w.empty(204)
         return
+    
     c("fetching_user", {"username": username})
+    
+    # Resolve the actual username from API
+    entry = search_entry(username)
+    if entry and not entry.get('not_found'):
+        resolved = entry['user']['username'].lower()
+        if resolved != username.lower():
+            # Swap search term for real username
+            tracked_users.discard(username.lower())
+            tracked_users.add(resolved)
+            c("resolved_user", {"from": username, "to": resolved})
+    
     w.empty(204)
     relay.publish("refresh", username)
 
